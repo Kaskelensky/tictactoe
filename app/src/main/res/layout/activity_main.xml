@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        android:background="@drawable/btneasy"
+        android:background="@drawable/btn"
         android:contentDescription="@string/to_do"
         app:srcCompat="@drawable/btneasypng"
         />
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/easyBtn"
-        android:background="@drawable/btnnormal"
+        android:background="@drawable/btn"
         android:contentDescription="@string/to_do"
         app:srcCompat="@drawable/btnnormalpng"/>
 
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/normalBtn"
-        android:background="@drawable/btnhard"
+        android:background="@drawable/btn"
         android:contentDescription="@string/to_do"
         app:srcCompat="@drawable/btnhardpng"/>
 
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hardBtn"
-        android:background="@drawable/btnwf"
+        android:background="@drawable/btn"
         android:contentDescription="@string/to_do"
         app:srcCompat="@drawable/btnwfpng"/>
 
