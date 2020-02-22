@@ -9,230 +9,48 @@ import kotlinx.android.synthetic.main.activity_game_place.*
 
 class GamePlace : AppCompatActivity() {
 
+    //import kotlinx.android.synthetic.main.activity_game_place.*
+
     var player1Turn = true
+
+    var roundCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_place)
 
-        val roundCount = 0
-
-        ///dfdfdf
-
-        b00.setOnClickListener {
-            if (b00.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b00.text = "X"
-            } else {
-                b00.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b01.setOnClickListener {
-            if (b01.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b01.text = "X"
-            } else {
-                b01.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b02.setOnClickListener {
-            if (b02.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b02.text = "X"
-            } else {
-                b02.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b10.setOnClickListener {
-            if (b10.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b10.text = "X"
-            } else {
-                b10.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b11.setOnClickListener {
-            if (b11.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b11.text = "X"
-            } else {
-                b11.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b12.setOnClickListener {
-            if (b12.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b12.text = "X"
-            } else {
-                b12.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b20.setOnClickListener {
-            if (b20.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b20.text = "X"
-            } else {
-                b20.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b21.setOnClickListener {
-            if (b21.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b21.text = "X"
-            } else {
-                b21.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
-            }
-        }
-
-        b22.setOnClickListener {
-            if (b22.text.toString() != "") {
-                return@setOnClickListener
-            }
-            if (player1Turn) {
-                b22.text = "X"
-            } else {
-                b22.text = "O"
-            }
-            val roundCount = roundCount + 1
-            if (checkForWin()) {
-                if (player1Turn) {
-                    player1Wins()
-                } else {
-                    player2Wins()
-                }
-            } else if (roundCount == 9) {
-                draw()
-            } else {
-                player1Turn = !player1Turn
+        for (i in 0..2) {
+            for (j in 0..2) {
+                val buttonID = "b$i$j"
+                val resID = resources.getIdentifier(buttonID, "id", packageName)
+                val btn = findViewById<Button>(resID)
+                btn.setOnClickListener(this::onClick)
             }
         }
 
     }
 
-    fun isPressed(btn: Button) : Boolean {
-        if (btn.text.toString() != "") {
-            return false
+    fun onClick(v: View) {
+        if ((v as Button).text.toString() != "") {
+            return
         }
-        return true
+        if (player1Turn) {
+            v.text = "X"
+        } else {
+            v.text = "O"
+        }
+        roundCount++
+        if (checkForWin()) {
+            if (player1Turn) {
+                player1Wins()
+            } else {
+                player2Wins()
+            }
+        } else if (roundCount == 9) {
+            draw()
+        } else {
+            player1Turn = !player1Turn
+        }
     }
 
     fun resetBoard() {
