@@ -1,20 +1,22 @@
 package com.kaskelensky.tictactoe
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+import kotlin.collections.ArrayList
 
-class GamePlace : AppCompatActivity() {
-
-    var player1Turn = true
+class Easy : AppCompatActivity() {
 
     var roundCount = 0
 
+    var player1Turn = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game_place)
+        setContentView(R.layout.activity_easy)
 
         for (i in 0..2) {
             for (j in 0..2) {
@@ -24,7 +26,6 @@ class GamePlace : AppCompatActivity() {
                 btn.setOnClickListener(this::onClick)
             }
         }
-
     }
 
     fun onClick(v: View) {
@@ -33,10 +34,9 @@ class GamePlace : AppCompatActivity() {
         }
         if (player1Turn) {
             v.text = "X"
-        } else {
-            v.text = "O"
+            roundCount++
         }
-        roundCount++
+
         if (checkForWin()) {
             if (player1Turn) {
                 player1Wins()
@@ -45,9 +45,24 @@ class GamePlace : AppCompatActivity() {
             }
         } else if (roundCount == 9) {
             draw()
-        } else {
-            player1Turn = !player1Turn
         }
+
+        player1Turn = !player1Turn
+
+        if (!player1Turn) {
+            autoPlay()
+        }
+
+        if (checkForWin()) {
+            if (player1Turn) {
+                player1Wins()
+            } else {
+                player2Wins()
+            }
+        } else if (roundCount == 9) {
+            draw()
+        }
+        player1Turn = !player1Turn
     }
 
     fun resetBoard() {
@@ -93,12 +108,12 @@ class GamePlace : AppCompatActivity() {
     }
 
     fun player1Wins() {
-        Toast.makeText(this, "X wins!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "You wins!", Toast.LENGTH_SHORT).show()
         resetBoard()
     }
 
     fun player2Wins() {
-        Toast.makeText(this, "O wins!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Computer wins!", Toast.LENGTH_SHORT).show()
         resetBoard()
     }
 
@@ -106,4 +121,30 @@ class GamePlace : AppCompatActivity() {
         Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show()
         resetBoard()
     }
+
+    fun autoPlay() {
+
+        val emptyButtons = ArrayList<Button>()
+
+        for (i in 0..2) {
+            for (j in 0..2) {
+                val buttonID = "b$i$j"
+                val resID = resources.getIdentifier(buttonID, "id", packageName)
+                val btn = findViewById<Button>(resID)
+                if (btn.text == "") {
+                    emptyButtons.add(btn)
+                }
+            }
+        }
+
+        if (emptyButtons.size > 0 || emptyButtons.size == 9) {
+
+            Collections.shuffle(emptyButtons);
+
+            emptyButtons.get(0).text = "O"
+
+            roundCount++
+        }
+    }
+
 }

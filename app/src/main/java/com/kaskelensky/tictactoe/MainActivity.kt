@@ -17,22 +17,18 @@ class MainActivity : AppCompatActivity() {
         val wfBtn = findViewById<ImageButton>(R.id.wfBtn)
 
         easyBtn?.setOnClickListener() {
-            startGame()
+            val intent = Intent(this, Easy::class.java)
+            startActivity(intent)
         }
         normalBtn?.setOnClickListener() {
-            startGame()
+
         }
         hardBtn?.setOnClickListener() {
-            startGame()
+
         }
         wfBtn?.setOnClickListener() {
-            startGame()
+            val intent = Intent(this, GamePlace::class.java)
+            startActivity(intent)
         }
-    }
-
-    private fun startGame() {
-        //get id from API
-        val intent = Intent(this, GamePlace::class.java)
-        startActivity(intent)
     }
 }
