@@ -8,7 +8,7 @@ import android.widget.Toast
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Easy : AppCompatActivity() {
+class Normal : AppCompatActivity() {
 
     var roundCount = 0
 
@@ -16,7 +16,7 @@ class Easy : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_easy)
+        setContentView(R.layout.activity_normal)
 
         for (i in 0..2) {
             for (j in 0..2) {
@@ -124,27 +124,24 @@ class Easy : AppCompatActivity() {
 
     fun autoPlay() {
 
-        val emptyButtons = ArrayList<Button>()
-
+        val btnTable = Array(3) { arrayOfNulls<Button>(3) }
         for (i in 0..2) {
             for (j in 0..2) {
                 val buttonID = "b$i$j"
                 val resID = resources.getIdentifier(buttonID, "id", packageName)
                 val btn = findViewById<Button>(resID)
-                if (btn.text == "") {
-                    emptyButtons.add(btn)
-                }
+                btnTable[i][j] = btn
             }
         }
 
-        if (emptyButtons.size > 0 /*|| emptyButtons.size == 9*/) {
-
-            Collections.shuffle(emptyButtons);
-
-            emptyButtons.get(0).text = "O"
-
-            roundCount++
-        }
+//        if (emptyButtons.size > 0 || emptyButtons.size == 9) {
+//
+//            Collections.shuffle(emptyButtons);
+//
+//            emptyButtons.get(0).text = "O"
+//
+//            roundCount++
+//        }
     }
 
 }
